@@ -1,0 +1,63 @@
+import { createBrowserRouter } from "react-router";
+import MainLayout from '../Layouts/MainLayout';
+import Appoinments from "../Components/Appoinments/Appoinments";
+import Home from "../Components/Home";
+import ErrorElement from "../Components/ErrorElement";
+import Blogs from "../Components/Blogs/Blogs";
+import PageNotFound from "../Components/PageNotFound";
+import DoctorsProfileDetails from "../Components/DoctorsProfileDetails/DoctorsProfileDetails";
+import Login from "../Components/LoginPage/Login";
+import Profile from "../Components/Profile/Profile";
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        Component: MainLayout,
+        errorElement: <ErrorElement></ErrorElement>,
+        children: [
+            {
+                index: true,
+                Component: Home,
+                hydrateFallbackElement: <div className="w-full h-[500px] flex justify-center items-center">
+                    <span className="loading loading-bars loading-xl"></span>
+                </div>,
+                loader: () => fetch('/DoctorsData.JSON')
+            },
+            {
+                path: '/Profile',
+                Component: Profile
+            },
+            {
+                path: '/My-Bookings',
+                Component: Appoinments
+            },
+            {
+                path: '/Contact-Us',
+                Component: PageNotFound
+            },
+            {
+                path: '/Blogs',
+                Component: Blogs,
+                hydrateFallbackElement: <div className="w-full h-[500px] flex justify-center items-center">
+                    <span className="loading loading-bars loading-xl"></span>
+                </div>,
+                loader: () => fetch('/QueAns.JSON')
+            },
+            {
+                path: '/View-Details/:id',
+                Component: DoctorsProfileDetails,
+                hydrateFallbackElement: <div className="w-full h-[500px] flex justify-center items-center">
+                    <span className="loading loading-bars loading-xl"></span>
+                </div>,
+                loader: () => fetch('/DoctorsData.JSON')
+            }
+        ]
+    },
+    {
+        path: '/Login',
+        Component: Login
+    }
+
+])
+
+export default router;
