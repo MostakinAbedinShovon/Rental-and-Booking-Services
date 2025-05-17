@@ -5,13 +5,20 @@ import logo from '../assets/logo.png';
 import { RiMenu3Line } from "react-icons/ri";
 import { AuthContext } from '../Provider/AuthProvider';
 import { FaUserCircle } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const NavBar = () => {
     const { User, LogOut } = use(AuthContext);
     const handleLogOut = () => {
         LogOut()
             .then(() => {
-                alert("You are Logged Out");
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Successfully Logout!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             }).catch((error) => {
                 console.log(error);
             });
@@ -45,7 +52,7 @@ const NavBar = () => {
             </div>
             {
                 User ? <div className='flex gap-2 items-center'>
-                    <Link onClick={handleLogOut} to={'/Signup-Login'} className="inline-flex items-center justify-center py-[2px] md:px-8 md:py-4 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-full w-[70px] sm:w-[140px] md:w-auto hover:bg-[#1d5364d7] cursor-pointer text-[9px] md:text-lg pjsb">
+                    <Link onClick={handleLogOut} className="inline-flex items-center justify-center py-[2px] md:px-8 md:py-4 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-full w-[70px] sm:w-[140px] md:w-auto hover:bg-[#1d5364d7] cursor-pointer text-[9px] md:text-lg pjsb">
                         Logout
                     </Link>
                 </div> : <div className='flex gap-2 items-center'>

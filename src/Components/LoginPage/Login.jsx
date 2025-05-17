@@ -74,6 +74,7 @@ const Login = () => {
         LogIn(email, password)
         .then(result => {
             const User = result.user;
+            navigate('/');
         })
         .catch(error => {
             alert("Email is Not Registered");
