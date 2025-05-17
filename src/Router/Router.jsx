@@ -8,6 +8,7 @@ import PageNotFound from "../Components/PageNotFound";
 import DoctorsProfileDetails from "../Components/DoctorsProfileDetails/DoctorsProfileDetails";
 import Login from "../Components/LoginPage/Login";
 import Profile from "../Components/Profile/Profile";
+import Post from "../Components/Post";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
                     <span className="loading loading-bars loading-xl"></span>
                 </div>,
                 loader: () => fetch('/DoctorsData.JSON')
+            },
+            {
+                path: '/Posts',
+                Component: Post
             }
         ]
     },

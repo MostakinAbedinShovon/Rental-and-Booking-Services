@@ -23,9 +23,24 @@ const Login = () => {
     };
     const handleRegistration = (e) => {
         e.preventDefault();
-        const name = e.target.name.value;
-        const photo = e.target.photoURL.value;
-        const email = e.target.email.value;
+        const form = e.target;
+        const name = form.name.value;
+        const photo = form.photoURL.value;
+        const email = form.email.value;
+        
+        const formData = new FormData(form);
+        const usersData = Object.fromEntries(formData.entries());
+        fetch('http://localhost:3000/users',{
+            method: 'POST',
+            headers: {
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(usersData)
+        })
+        .then(res => res.json())
+        .then (data => {
+            console.log(data);
+        })
 
         const validationMsg = validatePassword(password);
         if (validationMsg) {
@@ -48,7 +63,7 @@ const Login = () => {
                     })
             })
             .catch(error => {
-                setError("Email Already Registered");
+                alert("Email Already Registered");
             });
     };
     const {LogIn} = use(AuthContext);
@@ -61,7 +76,7 @@ const Login = () => {
             const User = result.user;
         })
         .catch(error => {
-            alert(error.Message);
+            alert("Email is Not Registered");
         })
     }
 
@@ -95,9 +110,9 @@ const Login = () => {
                                 className="bg-gray-200 px-4 py-2 text-sm rounded w-full h-10 outline-none"
                             >
                                 <option value="">Select Role</option>
-                                <option value="customer">Professional</option>
-                                <option value="vendor">Rent</option>
-                                <option value="admin">Customer</option>
+                                <option value="Professional">Professional</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Customer">Customer</option>
                             </select>
                         </div>
                         {error && <p className="text-red-600 text-sm my-2">{error}</p>}
@@ -124,6 +139,7 @@ const Login = () => {
                         <input name='password' type="password" placeholder="Password" className="bg-gray-200 my-2 px-4 py-2 text-sm rounded w-full outline-none h-10" />
                         <Link className="text-[#102E50] text-xs underline my-[15px] pjssb">Forget Your Password?</Link>
                         <button type='submit' className="bg-[#1d5364] text-white text-xs px-12 py-2 rounded font-semibold tracking-wider mt-2 cursor-pointer hover:bg-[#1d5364d7]">SIGN IN</button>
+                        {error && <p className="text-red-600 text-sm my-2">{error}</p>}
                     </form>
                 </div>
 
