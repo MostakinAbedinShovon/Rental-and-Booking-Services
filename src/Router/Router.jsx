@@ -8,7 +8,9 @@ import PageNotFound from "../Components/PageNotFound";
 import DoctorsProfileDetails from "../Components/DoctorsProfileDetails/DoctorsProfileDetails";
 import Login from "../Components/LoginPage/Login";
 import Profile from "../Components/Profile/Profile";
-import Post from "../Components/Post";
+import Post from "../Components/Post/Post";
+import Professional from "../Components/Post/Professional";
+import Rental from "../Components/Post/Rental";
 
 const router = createBrowserRouter([
     {
@@ -54,12 +56,22 @@ const router = createBrowserRouter([
             },
             {
                 path: '/Posts',
-                Component: Post
+                Component: Post,
+                children: [
+                    {
+                        path: '/Posts/Professional',
+                        Component: Professional
+                    },
+                    {
+                        path: '/Posts/Rental',
+                        Component: Rental
+                    }
+                ]
             }
         ]
     },
     {
-        path: '/Login',
+        path: '/Signup-Login',
         Component: Login
     }
 

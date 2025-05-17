@@ -11,7 +11,7 @@ const ThirdBanner = ({ SingleData }) => {
     return (
         <div className='bg-[#EFEFEF] px-10 lg:px-40 pb-20'>
             <section className='flex rounded-2xl flex-col p-8 bg-white'>
-                <h1 className='pjseb text-2xl/snug text-center mb-4'>Our Best Doctors</h1>
+                <h1 className='pjseb text-2xl/snug text-center mb-4'>Our Best Professionals</h1>
                 <hr className='border-1 border-dashed border-[#0f0f0f1a] my-4' />
                 <div className='flex justify-between items-center'>
                     <p className='pjsb text-md sm:text-lg'>Availability</p>
@@ -36,7 +36,7 @@ const ThirdBanner = ({ SingleData }) => {
                                         Book Now
                                     </Link>
                                 ) : (
-                                    <Link to={'/Login'} className="inline-flex items-center justify-center w-full px-8 py-4 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-full hover:bg-[#1d5364d7] text-xl pjsb">
+                                    <Link to={'/Signup-Login'} className="inline-flex items-center justify-center w-full px-8 py-4 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-full hover:bg-[#1d5364d7] text-xl pjsb">
                                         Book Now
                                     </Link>
                                 )
@@ -50,7 +50,7 @@ const ThirdBanner = ({ SingleData }) => {
                                         Book Now
                                     </Link>
                                 ) : (
-                                    <Link to={'/Login'} className="inline-flex items-center justify-center w-full px-8 py-4 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-full hover:bg-[#1d5364d7] text-md sm:text-xl pjsb">
+                                    <Link to={'/Signup-Login'} className="inline-flex items-center justify-center w-full px-8 py-4 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-full hover:bg-[#1d5364d7] text-md sm:text-xl pjsb">
                                         Book Now
                                     </Link>
                                 )

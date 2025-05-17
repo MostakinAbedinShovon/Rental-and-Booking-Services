@@ -110,8 +110,7 @@ const Login = () => {
                                 className="bg-gray-200 px-4 py-2 text-sm rounded w-full h-10 outline-none"
                             >
                                 <option value="">Select Role</option>
-                                <option value="Professional">Professional</option>
-                                <option value="Rent">Rent</option>
+                                <option value="Professional-rental">Professional/Rent</option>
                                 <option value="Customer">Customer</option>
                             </select>
                         </div>
