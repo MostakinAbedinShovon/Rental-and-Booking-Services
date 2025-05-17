@@ -1,5 +1,6 @@
 import React, { use } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Rental = () => {
     const { User, LogIn } = use(AuthContext);
@@ -11,17 +12,35 @@ const Rental = () => {
         professionalData.email = User.email;
         LogIn(User.email, professionalData.confirmPassword)
             .then(result => {
-                fetch('http://localhost:3000/professionals', {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#1d5364",
+                    cancelButtonColor: "#E0115F",
+                    confirmButtonText: "Yes, post it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Posted!",
+                            text: "Your ad has been posted.",
+                            icon: "success"
+                        });
+                    }
+                });
+                fetch('http://localhost:3000/rentalProducts', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify(professionalData)
                 })
-                    .then(res => res.json())``
+                    .then(res => res.json())
                     .then(data => {
                         console.log(data);
                     })
+                form.reset();
             })
             .catch(error => {
                 alert("Password Incorrect");
