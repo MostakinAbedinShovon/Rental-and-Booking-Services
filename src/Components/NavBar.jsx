@@ -54,7 +54,7 @@ const NavBar = () => {
             </details>
             <div className='hidden md:flex items-center gap-2'>
                 <img height="85px" width="85px" src={logo} alt="" />
-                <h1 className='text-[32px] pjseb text-[#1d5364]'>Labge?</h1>
+                <h1 className='text-[32px] pjseb text-[#1d5364]'>Lagbe?</h1>
             </div>
             <div className='hidden xl:flex gap-12'>
                 <NavLink className={({ isActive }) => `${isActive && 'underline underline-offset-8 text-[#1d5364]'} text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/'}>Home</NavLink>

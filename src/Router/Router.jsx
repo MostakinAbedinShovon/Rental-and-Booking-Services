@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/Profile',
-                Component: Profile
+                Component: Profile,
             },
             {
                 path: '/My-Bookings',
