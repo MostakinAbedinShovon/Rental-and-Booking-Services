@@ -1,4 +1,4 @@
-import React, { use, useContext, useState } from 'react';
+import React, { Suspense, use, useContext, useState } from 'react';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
@@ -142,6 +142,7 @@ const Login = () => {
                         {error && <p className="text-red-600 text-sm my-2">{error}</p>}
                     </form>
                 </div>
+                
 
                 {/* Toggle Panel */}
                 <div className="absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all duration-500 ease-in-out rounded-[150px_0_0_100px] z-[1000]">
