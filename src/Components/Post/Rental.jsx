@@ -8,43 +8,8 @@ const Rental = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        let professionalData = Object.fromEntries(formData.entries());
-        professionalData.email = User.email;
-        LogIn(User.email, professionalData.confirmPassword)
-            .then(result => {
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#1d5364",
-                    cancelButtonColor: "#E0115F",
-                    confirmButtonText: "Yes, post it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Posted!",
-                            text: "Your ad has been posted.",
-                            icon: "success"
-                        });
-                    }
-                });
-                fetch('http://localhost:3000/rentalProducts', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(professionalData)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                    })
-                form.reset();
-            })
-            .catch(error => {
-                alert("Password Incorrect");
-            })
+        const professionalData = Object.fromEntries(formData.entries());
+        
     }
     return (
         <div className='py-16 px-28 flex flex-col justify-center rounded-4xl bg-[#1d536416]'>
@@ -53,7 +18,26 @@ const Rental = () => {
                 By listing your rental items on our platform, you connect with professionals who need exactly what you offer—whether it’s event gear, tools, or creative equipment. Easy to manage, safe to share, and built to help you earn</p>
             <form onSubmit={handleProfessionalPost} className='grid grid-cols-2 gap-6'>
                 <input name='productName' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Product Name" required />
-                <input name='category' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Category" required />
+                <div className="w-full pjsr flex flex-col pjsm">
+                    <select
+                        id="category"
+                        name="category"
+                        className="bg-white px-2 py-2 text-sm border border-[#0f0f0f3f] rounded-md w-full h-10 outline-none pjsm text-[#0f0f0f]"
+                        required
+                    >
+                        <option value="">Select Category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Home & Kitchen">Home & Kitchen</option>
+                        <option value="Beauty & Health">Beauty & Health</option>
+                        <option value="Sports & Outdoors">Sports & Outdoors</option>
+                        <option value="Books">Books</option>
+                        <option value="Toys & Games">Toys & Games</option>
+                        <option value="Automotive">Automotive</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
                 <input name='rentPrice' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Rent Price" required />
                 <div className="w-full pjsr flex flex-col pjsm">
                     <select
@@ -63,15 +47,15 @@ const Rental = () => {
                         required
                     >
                         <option value="">Rent Duration</option>
-                        <option value="perHour">Per Hour</option>
-                        <option value="perDay">Per Day</option>
-                        <option value="perWeek">Per Week</option>
-                        <option value="perMonth">Per Month</option>
+                        <option value="perHour">Hourly</option>
+                        <option value="perDay">Daily</option>
+                        <option value="perWeek">Weekly</option>
+                        <option value="perMonth">Monthly</option>
                     </select>
                 </div>
                 <input name='location' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Location" required />
                 <input name='imageURL' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Image URL" required />
-                <input name='description' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Description" required />
+                <input name='quantity' type="number" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Product Quantity" required />
                 <div className="w-full pjsr flex flex-col pjsm">
                     <select
                         id="role"
@@ -87,6 +71,7 @@ const Rental = () => {
                         <option value="poor">Poor</option>
                     </select>
                 </div>
+                <textarea id="review" name="Bio" rows="4" className="rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2 mt-1 block px-3 py-2 border border-gray-300 rounded-md bg-white" placeholder="Product details..." ></textarea>
                 <input name='confirmPassword' type="password" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Confirm Password" required />
                 <button type='submit' className="col-span-2 cursor-pointer inline-flex items-center justify-center w-auto px-4 py-3 sm:px-4 sm:py-3 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-2xl sm:w-auto hover:bg-[#1d5364d7] text-md sm:text-xl pjssb">
                     Post

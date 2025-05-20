@@ -92,7 +92,7 @@ const Profile = () => {
     return (
         <div className='w-screen px-40 py-6 flex flex-col justify-center gap-6'>
             <SavedData logedinUser={logedinUser}></SavedData>
-            <div onSubmit={handleChangePassword} className='flex gap-8'>
+            <div className='flex gap-8'>
                 <div className='py-16 px-24 flex flex-col justify-center rounded-4xl bg-[#1d536416] w-2/3'>
                     <h1 className='pjseb text-4xl sm:text-5xl/snug text-center mb-2 md:mb-4 text-[#1d5364]'>Profile Details</h1>
                     <form onSubmit={handleUpdateProfile} className='grid grid-cols-2 gap-6'>
@@ -110,6 +110,7 @@ const Profile = () => {
                             >
                                 <option value="">Skill</option>
                                 <option value="Software Developer">Software Developer</option>
+                                <option value="Web Developer">Web Developer</option>
                                 <option value="Graphics Designer">Graphics Designer</option>
                                 <option value="Video Editor">Video Editor</option>
                                 <option value="Black Smith">Black Smith</option>
@@ -140,7 +141,7 @@ const Profile = () => {
                 </div>
                 <div className='py-8 px-14 flex flex-col justify-center rounded-4xl bg-[#1d536416] h-1/12 w-1/3'>
                     <h1 className='pjseb text-4xl sm:text-3xl/snug text-center mb-2 md:mb-4 text-[#1d5364]'>Change Password</h1>
-                    <form className='grid grid-cols-2 gap-6 mb-8'>
+                    <form onSubmit={handleChangePassword} className='grid grid-cols-2 gap-6 mb-8'>
                         <input name='Password' type="password" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Password" />
                         <input name='newPassword' type="password" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="New Password" />
                         <input name='conPassword' type="password" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Confirm Password" />
