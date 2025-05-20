@@ -37,6 +37,7 @@ const Professional = () => {
                             text: "Your details has been posted.",
                             icon: "success"
                         });
+                        form.reset();
                     })
                     .catch(error => {
                         Swal.fire({

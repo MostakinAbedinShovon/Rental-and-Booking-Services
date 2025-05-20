@@ -8,8 +8,47 @@ const Rental = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const professionalData = Object.fromEntries(formData.entries());
-        
+        const rentalProductsData = Object.fromEntries(formData.entries());
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, post it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                LogIn(User.email, rentalProductsData.confirmPassword)
+                    .then(result => {
+                        fetch('http://localhost:3000/rentalProducts', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(rentalProductsData)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                            })
+                        Swal.fire({
+                            title: "Posted!",
+                            text: "Your details has been posted.",
+                            icon: "success"
+                        });
+                        form.reset();
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Wrong Password!",
+                        });
+                    })
+
+            }
+        });
     }
     return (
         <div className='py-16 px-28 flex flex-col justify-center rounded-4xl bg-[#1d536416]'>
