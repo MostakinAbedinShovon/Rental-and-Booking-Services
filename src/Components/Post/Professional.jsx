@@ -19,33 +19,43 @@ const Professional = () => {
             confirmButtonText: "Yes, post it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                LogIn(User.email, professionalsData.confirmPassword)
-                    .then(result => {
-                        fetch('http://localhost:3000/professionals', {
-                            method: 'POST',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(professionalsData)
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                console.log(data);
+                if (User.email == professionalsData.email && professionalsData.role == "Professional-rental") {
+                    LogIn(User.email, professionalsData.confirmPassword)
+                        .then(result => {
+                            fetch('http://localhost:3000/professionals', {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(professionalsData)
                             })
-                        Swal.fire({
-                            title: "Posted!",
-                            text: "Your details has been posted.",
-                            icon: "success"
-                        });
-                        form.reset();
-                    })
-                    .catch(error => {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Wrong Password!",
-                        });
-                    })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+                                })
+                            Swal.fire({
+                                title: "Posted!",
+                                text: "Your details has been posted.",
+                                icon: "success"
+                            });
+                            form.reset();
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Wrong Password!",
+                            });
+                        })
+                }
+                else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Wrong Email or Role!",
+                    });
+                }
+
 
             }
         });
@@ -76,7 +86,8 @@ const Professional = () => {
                         <option value="Others">Others</option>
                     </select>
                 </div>
-                <input name='imageURL' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2 pjsm" placeholder="Image URL" required />
+                <input name='phoneNumber' type="text" className="col-span-2 input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm col-span-2" placeholder="Phone Number" />
+                <input name='photoURL' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2 pjsm" placeholder="Image URL" required />
                 <input name='currentlyWorking' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2 pjsm" placeholder="Currently Working" required />
                 <div className="w-full pjsr flex flex-col col-span-2 pjsm">
                     <select
@@ -86,10 +97,10 @@ const Professional = () => {
                         required
                     >
                         <option value="">Experience</option>
-                        <option value="entry">Entry Level (0–1 years)</option>
-                        <option value="intermediate">Intermediate (2–4 years)</option>
-                        <option value="experienced">Experienced (5–7 years)</option>
-                        <option value="senior">Senior (8+ years)</option>
+                        <option value="Entry">Entry Level (0–1 years)</option>
+                        <option value="Intermediate">Intermediate (2–4 years)</option>
+                        <option value="Experienced">Experienced (5–7 years)</option>
+                        <option value="Senior">Senior (8+ years)</option>
                     </select>
                 </div>
                 <input name='fee' type="number" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Fee" required />
@@ -135,6 +146,18 @@ const Professional = () => {
                     </select>
                 </div>
                 <textarea id="review" name="Bio" rows="4" className="rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2 mt-1 block px-3 py-2 border border-gray-300 rounded-md bg-white" placeholder="Details about yourself..." ></textarea>
+                <input name='email' type="email" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full" placeholder="Email" required />
+                <div className="w-full pjsr flex flex-col pjsm">
+                    <select
+                        id="role"
+                        name="role"
+                        className="bg-white px-2 py-2 text-sm border border-[#0f0f0f3f] rounded-md w-full h-10 outline-none pjsm text-[#0f0f0f]"
+                    >
+                        <option value="">Select Role</option>
+                        <option value="Professional-rental">Professional/Rent</option>
+                        <option value="Customer">Customer</option>
+                    </select>
+                </div>
                 <input name='confirmPassword' type="password" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Confirm Password" required />
                 <button type='submit' className="col-span-2 cursor-pointer inline-flex items-center justify-center w-auto px-4 py-3 sm:px-4 sm:py-3 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-2xl sm:w-auto hover:bg-[#1d5364d7] text-md sm:text-xl pjssb">
                     Post

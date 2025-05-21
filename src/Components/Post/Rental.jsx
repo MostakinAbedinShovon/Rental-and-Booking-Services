@@ -93,7 +93,7 @@ const Rental = () => {
                     </select>
                 </div>
                 <input name='location' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Location" required />
-                <input name='imageURL' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Image URL" required />
+                <input name='photoURL' type="text" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Image URL" required />
                 <input name='quantity' type="number" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Product Quantity" required />
                 <div className="w-full pjsr flex flex-col pjsm">
                     <select
@@ -111,6 +111,7 @@ const Rental = () => {
                     </select>
                 </div>
                 <textarea id="review" name="Bio" rows="4" className="rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2 mt-1 block px-3 py-2 border border-gray-300 rounded-md bg-white" placeholder="Product details..." ></textarea>
+                <input name='email' type="email" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Email" required />
                 <input name='confirmPassword' type="password" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Confirm Password" required />
                 <button type='submit' className="col-span-2 cursor-pointer inline-flex items-center justify-center w-auto px-4 py-3 sm:px-4 sm:py-3 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-2xl sm:w-auto hover:bg-[#1d5364d7] text-md sm:text-xl pjssb">
                     Post

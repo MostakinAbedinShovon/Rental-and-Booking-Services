@@ -24,7 +24,7 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <div className="w-full h-[500px] flex justify-center items-center">
                     <span className="loading loading-bars loading-xl"></span>
                 </div>,
-                loader: () => fetch('/DoctorsData.JSON')
+                loader: () => fetch('http://localhost:3000/professionalsData')
             },
             {
                 path: '/Profile',
@@ -47,12 +47,12 @@ const router = createBrowserRouter([
                 loader: () => fetch('/QueAns.JSON')
             },
             {
-                path: '/View-Details/:id',
+                path: '/professionalsData/:id',
                 Component: DoctorsProfileDetails,
                 hydrateFallbackElement: <div className="w-full h-[500px] flex justify-center items-center">
                     <span className="loading loading-bars loading-xl"></span>
                 </div>,
-                loader: () => fetch('/DoctorsData.JSON')
+                loader: ({params}) => fetch(`http://localhost:3000/professionalsData/${params.id}`)
             },
             {
                 path: '/Posts',

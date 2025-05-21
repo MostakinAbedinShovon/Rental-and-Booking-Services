@@ -40,7 +40,7 @@ const Profile = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                console.log(data);
+                                Swal.fire("Saved!", "", "success");
                             })
                         setError("");
                         updateUser({ displayName: usersData.name, photoURL: usersData.photoURL })
@@ -50,7 +50,6 @@ const Profile = () => {
                             })
                             .catch((error) => {
                             })
-                        Swal.fire("Saved!", "", "success");
                     })
                     .catch(error => {
                         Swal.fire({
@@ -98,7 +97,7 @@ const Profile = () => {
                     <form onSubmit={handleUpdateProfile} className='grid grid-cols-2 gap-6'>
                         <input name='name' type="text" className="col-span-2 input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Name" />
                         <input name='phoneNumber' type="text" className="col-span-2 input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Phone Number" />
-                        <input name='imageURL' type="text" className="col-span-2 input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Image URL" required />
+                        <input name='photoURL' type="text" className="col-span-2 input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Image URL" required />
                         <input name='currentlyWorking' type="text" className="col-span-2 input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Currently Working" />
                         <input name='presentAdd' type="text" className="col-span-2 input rounded-md focus:outline-none focus:border-[#1d5364] w-full pjsm" placeholder="Address" />
                         <div className="w-full pjsr flex flex-col pjsm">
@@ -133,6 +132,7 @@ const Profile = () => {
                             </select>
                         </div>
                         <textarea id="review" name="Bio" rows="4" className="rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2 mt-1 block px-3 py-2 border border-gray-300 rounded-md bg-white" placeholder="Bio" ></textarea>
+                        <input name='email' type="email" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Email" />
                         <input name='confirmPassword' type="password" className="input rounded-md focus:outline-none focus:border-[#1d5364] w-full col-span-2" placeholder="Confirm Password" />
                         <button type='submit' className="col-span-2 cursor-pointer inline-flex items-center justify-center w-auto px-4 py-3 sm:px-4 sm:py-3 font-bold leading-6 text-white bg-[#1d5364] border border-transparent rounded-2xl sm:w-auto hover:bg-[#1d5364d7] text-md sm:text-xl pjssb">
                             Save Changes

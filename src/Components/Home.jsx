@@ -5,11 +5,11 @@ import MedicalServices from '../Components/MedicalServices';
 import { useLoaderData } from 'react-router';
 
 const Home = () => {
-    const DoctorsData = useLoaderData();
+    const professionalsData = useLoaderData();
     return (
         <div>
             <Hero></Hero>
-            <BestDoctors DoctorsData={DoctorsData}></BestDoctors>
+            <BestDoctors professionalsData={professionalsData}></BestDoctors>
             <MedicalServices></MedicalServices>
         </div>
     );

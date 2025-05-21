@@ -41,7 +41,6 @@ const Login = () => {
         .then (data => {
             console.log(data);
         })
-
         const validationMsg = validatePassword(password);
         if (validationMsg) {
             setError(validationMsg);
