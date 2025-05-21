@@ -31,7 +31,7 @@ const router = createBrowserRouter([
                 Component: Profile,
             },
             {
-                path: '/My-Bookings',
+                path: '/bookedItems',
                 Component: Appoinments
             },
             {

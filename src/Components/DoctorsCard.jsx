@@ -1,14 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router';
 import DoctorsProfileDetails from './DoctorsProfileDetails/DoctorsProfileDetails'
+import Swal from 'sweetalert2';
+import { MdOutlineDeleteForever } from 'react-icons/md';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const DoctorsCard = ({ professionalData }) => {
+    const { User } = useContext(AuthContext);
+    const nevigate = useNavigate();
+    const handleDelete = (e) => {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/professionalsData/${professionalData._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        nevigate('/');
+                    })
+            }
+        });
+    }
     return (
         <div className='p-8 bg-white rounded-2xl'>
             <img className='mb-4 rounded-2xl' src={professionalData.photoURL} alt="" />
             <div className='flex gap-2 mb-4'>
                 {
-                    professionalData.availability=="yes" ?
+                    professionalData.availability == "yes" ?
                         (<div className='px-2.5 sm:px-3.5 py-1.5 rounded-full bg-[#09982f16] text-[#09982fcb] pjsm text-[12px] sm:text-sm text-center border-1 border-[#09982f2b]'>
                             <p>Available</p>
                         </div>) : (<div className='px-3.5 py-1.5 rounded-full bg-[#ff000016] text-[#ff0000cb] pjsm text-sm text-center border-1 border-[#ff00002b]'>
@@ -20,7 +52,12 @@ const DoctorsCard = ({ professionalData }) => {
                 </div>
             </div>
             <h2 className='pjseb text-xl sm:text-2xl mb-3'>{professionalData.name}</h2>
-            <p className='pjsm text-[12px] sm:text-lg text-[#0f0f0f8c]'>{professionalData.skill}</p>
+            <span className='flex w-full justify-between items-center'>
+                <p className='pjsm text-[12px] sm:text-lg text-[#0f0f0f8c]'>{professionalData.skill}</p>
+                {
+                    User?.email == professionalData?.email && <MdOutlineDeleteForever className='cursor-pointer' onClick={handleDelete} size={45} />
+                }
+            </span>
             <hr className='border-1 border-dashed border-[#0f0f0f1a] my-2' />
             <p className='flex items-center mb-4'>
                 <span className='text-2xl sm:text-3xl text-[#0f0f0f90] mr-3'>Ⓡ</span>

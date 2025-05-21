@@ -26,7 +26,7 @@ const EachAppoinment = ({TotalAppoinments, setTotalAppoinments, SingleAppoinment
                 <hr className='border-1 border-dashed border-[#0f0f0f1a] my-3 sm:my-4' />
                 <div className='flex justify-center items-center'>
                     <Link onClick={ () => {
-                        const restData = TotalAppoinments.filter((element) => element.id!=SingleAppoinment.id);
+                        const restData = TotalAppoinments.filter((element) => element._id!=SingleAppoinment._id);
                         setTotalAppoinments(restData);
                         RemoveElement(SingleAppoinment.id);
                         toast.error('Appointment canceled');

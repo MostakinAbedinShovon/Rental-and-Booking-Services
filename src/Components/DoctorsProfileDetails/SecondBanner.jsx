@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AvailableDay from '../AvailableDay';
+import { MdOutlineDeleteForever } from 'react-icons/md';
+import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const SecondBanner = ({ professionalData }) => {
+    const { User } = useContext(AuthContext);
+    const nevigate = useNavigate();
+    const handleDelete = (e) => {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/professionalsData/${professionalData._id}`,{
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        nevigate('/');
+                    })
+            }
+        });
+    }
     return (
         <div className='bg-[#EFEFEF] px-10 lg:px-40 pb-8'>
             <section className='p-14 flex flex-col sm:flex-row gap-6 bg-white rounded-3xl'>
@@ -48,12 +81,15 @@ const SecondBanner = ({ professionalData }) => {
                         </div>
 
                     </div>
-                    <p className='flex pjs text-sm sm:text-base gap-2'>
-                        <span className='pjsb'>Consultation Fee:</span>
-                        <span className='pjssb text-[#176AE5]'>Taka : {professionalData?.fee}</span>
-                        <span className='pjsm text-[#14141486]'>(incl. Vat)</span>
-                        <span className='pjssb text-[#176AE5]'>Per {professionalData.feeBasis}</span>
-                    </p>
+                    <div className='flex justify-between'>
+                        <p className='flex pjs text-sm sm:text-base gap-2'>
+                            <span className='pjsb'>Consultation Fee:</span>
+                            <span className='pjssb text-[#176AE5]'>Taka : {professionalData?.fee}</span>
+                            <span className='pjsm text-[#14141486]'>(incl. Vat)</span>
+                            <span className='pjssb text-[#176AE5]'>Per {professionalData.feeBasis}</span>
+                        </p>
+                        <MdOutlineDeleteForever onClick={handleDelete} className='cursor-pointer' size={45} />
+                    </div>
                 </div>
             </section>
         </div>

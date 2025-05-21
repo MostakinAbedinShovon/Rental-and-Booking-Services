@@ -2,15 +2,24 @@ import BarCharts from './BarCharts';
 import EachAppoinment from './EachAppoinment';
 import { getData } from '../../Utilities/LocalStorage';
 import { Link } from 'react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Appoinments = () => {
-    const [TotalAppoinments, setTotalAppoinments] = useState(getData() || []);
+    const [bookedItems, setBookedItems] = useState(null);
+    useEffect(() => {
+        fetch('http://localhost:3000/bookedItems')
+            .then(res => res.json())
+            .then(data => {
+                setBookedItems(data);
+                console.log(data);
+            })
+    }, []);
+    console.log(bookedItems)
     return (
         <div className='bg-[#EFEFEF] pb-20'>
             {
-                TotalAppoinments.length < 1 ? (
+                bookedItems?.length < 1 ? (
                     <div>
                         <div className='bg-[#EFEFEF] sm:px-40 sm:py-8'>
                             <section className='flex flex-col justify-center items-center px-40 py-[72px] bg-white rounded-3xl'>
@@ -25,11 +34,11 @@ const Appoinments = () => {
                 ) : (
                     <div>
                         <div className='hidden lg:flex lg:flex-col'>
-                        <BarCharts TotalAppoinments={TotalAppoinments}></BarCharts>
+                            <BarCharts bookedItems={bookedItems}></BarCharts>
                         </div>
                         <h1 className='pjseb text-2xl sm:text-[40px]/snug text-center text-[#1d5364]'>My Today Bookings</h1>
                         <p className='pjsr text-[12px] sm:text-base text-center text-[#0f0f0f9c] mt-4'>Our platform connects you with verified, experienced professionals across various specialties — all at your convenience.</p>
-                        {TotalAppoinments.map((SingleAppoinment) => <EachAppoinment key={SingleAppoinment.id} TotalAppoinments={TotalAppoinments} setTotalAppoinments={setTotalAppoinments} SingleAppoinment={SingleAppoinment}></EachAppoinment>)}
+                        {bookedItems?.map((SingleAppoinment) => <EachAppoinment key={SingleAppoinment._id} TotalAppoinments={bookedItems} setTotalAppoinments={bookedItems} SingleAppoinment={SingleAppoinment}></EachAppoinment>)}
                     </div>
                 )
             }

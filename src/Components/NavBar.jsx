@@ -47,7 +47,7 @@ const NavBar = () => {
                 </summary>
                 <ul className="gap-y-1 sm:gap-y-2 menu dropdown-content bg-base-100 rounded-box z-1 sm:h-auto w-52 p-2 shadow-sm">
                     <NavLink className={`text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/'}>Home</NavLink>
-                    <NavLink className={`text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/My-Bookings'}>My-Bookings</NavLink>
+                    <NavLink className={`text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/bookedItems'}>My-Bookings</NavLink>
                     <NavLink className={`text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/Blogs'}>Blogs</NavLink>
                     <NavLink className={`text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/Contact-Us'}>Contact Us</NavLink>
                 </ul>
@@ -58,7 +58,7 @@ const NavBar = () => {
             </div>
             <div className='hidden xl:flex gap-12'>
                 <NavLink className={({ isActive }) => `${isActive && 'underline underline-offset-8 text-[#1d5364]'} text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/'}>Home</NavLink>
-                <NavLink className={({ isActive }) => `${isActive && 'underline underline-offset-8 text-[#1d5364]'} ${logedinUser?.role=="Professional-rental" && 'hidden'} ${!User && 'hidden'} text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/My-Bookings'}>My-Bookings</NavLink>
+                <NavLink className={({ isActive }) => `${isActive && 'underline underline-offset-8 text-[#1d5364]'} ${logedinUser?.role=="Professional-rental" && 'hidden'} ${!User && 'hidden'} text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/bookedItems'}>My-Bookings</NavLink>
                 <NavLink className={`${isActive && 'underline underline-offset-8 text-[#1d5364]'} ${logedinUser?.role=="Customer" && 'hidden'} ${!User && 'hidden'} text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/Posts/Professional'}>Posts</NavLink>
                 <NavLink className={({ isActive }) => ` ${isActive && 'underline underline-offset-8 text-[#1d5364]'} text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/Blogs'}>FAQ</NavLink>
                 <NavLink className={({ isActive }) => ` ${isActive && 'underline underline-offset-8 text-[#1d5364]'} text-[10px] sm:text-xl text-[#0f0f0fc0] pjsm`} to={'/Contact-Us'}>Contact Us</NavLink>
