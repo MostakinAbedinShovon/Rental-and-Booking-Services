@@ -11,7 +11,7 @@ const ThirdBanner = ({ professionalData }) => {
     const [bookedItems, setBookedItems] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
-        fetch('http://localhost:3000/bookedItems')
+        fetch('https://lab-final-project-server.vercel.app/bookedItems')
             .then(res => res.json())
             .then(data => {
                 setBookedItems(data.find(single => single?.email == User.email));
@@ -34,7 +34,7 @@ const ThirdBanner = ({ professionalData }) => {
             if (result.isConfirmed) {
                 window.scrollTo(0, 0)
                 toast.success(`Order Booked for ${professionalData.name} successfully`)
-                fetch('http://localhost:3000/bookedItems', {
+                fetch('https://lab-final-project-server.vercel.app/bookedItems', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

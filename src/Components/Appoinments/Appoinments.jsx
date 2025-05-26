@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 const Appoinments = () => {
     const [bookedItems, setBookedItems] = useState(null);
     useEffect(() => {
-        fetch('http://localhost:3000/bookedItems')
+        fetch('https://lab-final-project-server.vercel.app/bookedItems')
             .then(res => res.json())
             .then(data => {
                 setBookedItems(data);

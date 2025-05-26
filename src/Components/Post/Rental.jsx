@@ -21,7 +21,7 @@ const Rental = () => {
             if (result.isConfirmed) {
                 LogIn(User.email, rentalProductsData.confirmPassword)
                     .then(result => {
-                        fetch('http://localhost:3000/rentalProducts', {
+                        fetch('https://lab-final-project-server.vercel.app/rentalProducts', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

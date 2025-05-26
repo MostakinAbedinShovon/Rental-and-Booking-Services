@@ -24,7 +24,7 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <div className="w-full h-[500px] flex justify-center items-center">
                     <span className="loading loading-bars loading-xl"></span>
                 </div>,
-                loader: () => fetch('http://localhost:3000/professionalsData')
+                loader: () => fetch('https://lab-final-project-server.vercel.app/professionalsData')
             },
             {
                 path: '/Profile',
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <div className="w-full h-[500px] flex justify-center items-center">
                     <span className="loading loading-bars loading-xl"></span>
                 </div>,
-                loader: ({params}) => fetch(`http://localhost:3000/professionalsData/${params.id}`)
+                loader: ({params}) => fetch(`https://lab-final-project-server.vercel.app/professionalsData/${params.id}`)
             },
             {
                 path: '/Posts',

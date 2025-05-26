@@ -9,7 +9,7 @@ const Profile = () => {
     const [error, setError] = useState("");
     const [logedinUser, setLogedinUser] = useState(null);
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('https://lab-final-project-server.vercel.app/users')
             .then(res => res.json())
             .then(data => {
                 setLogedinUser(data.find(single => single.email == User.email));
@@ -31,7 +31,7 @@ const Profile = () => {
             if (result.isConfirmed) {
                 LogIn(User.email, usersData.confirmPassword)
                     .then(result => {
-                        fetch(`http://localhost:3000/users/${logedinUser._id}`, {
+                        fetch(`https://lab-final-project-server.vercel.app/users/${logedinUser._id}`, {
                             method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'

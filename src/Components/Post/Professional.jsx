@@ -22,7 +22,7 @@ const Professional = () => {
                 if (User.email == professionalsData.email && professionalsData.role == "Professional-rental") {
                     LogIn(User.email, professionalsData.confirmPassword)
                         .then(result => {
-                            fetch('http://localhost:3000/professionals', {
+                            fetch('https://lab-final-project-server.vercel.app/professionals', {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json'

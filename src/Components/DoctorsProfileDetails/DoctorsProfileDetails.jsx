@@ -10,7 +10,7 @@ const DoctorsProfileDetails = () => {
     const { User } = useContext(AuthContext);
     const [logedinUser, setLogedinUser] = useState(null);
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('https://lab-final-project-server.vercel.app/users')
             .then(res => res.json())
             .then(data => {
                 setLogedinUser(data.find(single => single.email == User.email));

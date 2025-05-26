@@ -20,7 +20,7 @@ const DoctorsCard = ({ professionalData }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/professionalsData/${professionalData._id}`, {
+                fetch(`https://lab-final-project-server.vercel.app/professionalsData/${professionalData._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

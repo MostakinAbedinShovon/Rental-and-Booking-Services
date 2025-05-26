@@ -13,7 +13,7 @@ const NavBar = () => {
     const [logedinUser, setLogedinUser] = useState(null);
     useEffect(() => {
         if (User?.email) {
-            fetch('http://localhost:3000/users')
+            fetch('https://lab-final-project-server.vercel.app/users')
                 .then(res => res.json())
                 .then(data => {
                     const foundUser = data.find(singleUser => singleUser.email === User.email);
